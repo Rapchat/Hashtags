@@ -31,10 +31,10 @@ extension Array where Element: Equatable {
 @objc open class HashTag: NSObject {
     
     @objc open var identifier : String = ""
-    open var text: String
-    open var isRemovable: Bool = true;
-    open var hasHashSymbol: Bool = true;
-    open var isGoldTag : Bool = false
+    @objc open var text: String = ""
+    @objc open var isRemovable: Bool = true;
+    @objc open var hasHashSymbol: Bool = true;
+    @objc open var isGoldTag : Bool = false
     open var configuration: HashtagConfiguration?
     
     @objc public init(word: String, isGoldTag: Bool = false, identifier:String="") {
