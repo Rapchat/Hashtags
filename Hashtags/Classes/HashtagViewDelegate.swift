@@ -9,5 +9,6 @@ import Foundation
 
 @objc public protocol HashtagViewDelegate: class {
     func hashtagRemoved(hashtag: HashTag)
+    @objc optional func hashtagViewTapped(hashtag: HashTag)
     func viewShouldResizeTo(size: CGSize)
 }

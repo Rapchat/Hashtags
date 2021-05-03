@@ -354,6 +354,14 @@ extension HashtagView: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.configureWithTag(tag: hashtag, configuration: makeConfiguration())
         return cell
     }
+    
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let hashtag: HashTag = self.hashtags[indexPath.item]
+        hashtag.text = String(hashtag.text.removeFirst())
+        if (self.delegate != nil) {
+            self.delegate?.hashtagViewTapped?(hashtag: hashtag)
+        }
+    }
 }
 
 extension HashtagView: UICollectionViewDelegateFlowLayout {
