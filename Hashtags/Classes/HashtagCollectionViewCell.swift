@@ -71,7 +71,6 @@ open class HashtagCollectionViewCell: UICollectionViewCell {
         self.paddingBottomConstraint!.constant = -1 * configuration.paddingBottom
         self.paddingRightConstraint!.constant = -1 * configuration.paddingRight
 
-        self.layer.cornerRadius = configuration.cornerRadius
         self.backgroundColor = configuration.backgroundColor
     
         self.wordLabel.textColor = tag.isGoldTag ? configuration.goldTagColor : configuration.textColor
