@@ -34,6 +34,7 @@ open class RemovableHashtagCollectionViewCell: UICollectionViewCell {
         lbl.textColor = UIColor.white
         lbl.textAlignment = .center
         lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.numberOfLines = 0
         return lbl
     }()
     
@@ -77,8 +78,6 @@ open class RemovableHashtagCollectionViewCell: UICollectionViewCell {
         self.addSubview(wordLabel)
         self.addSubview(removeButton)
         
-        // Text Width
-        self.wordLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 10).isActive = true
         // Padding left
         self.paddingLeftConstraint = self.wordLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor)
         self.paddingLeftConstraint!.isActive = true
@@ -99,6 +98,7 @@ open class RemovableHashtagCollectionViewCell: UICollectionViewCell {
         self.removeButtonHeightConstraint!.isActive = true
         // Remove button Y alignment
         self.removeButton.centerYAnchor.constraint(equalTo: self.wordLabel.centerYAnchor).isActive = true
+        self.removeButton.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: -5).isActive = true
         // Remove button target
         self.removeButton.addTarget(self, action: Selector.removeButtonClicked, for: .touchUpInside)
     }
@@ -120,18 +120,15 @@ open class RemovableHashtagCollectionViewCell: UICollectionViewCell {
 extension RemovableHashtagCollectionViewCell {
     open func configureWithTag(tag: HashTag, configuration: HashtagConfiguration) {
         self.hashtag = tag
-        wordLabel.text = tag.text
-
+        self.wordLabel.text = tag.text
+        self.wordLabel.font = configuration.hashtagFont
         self.paddingLeftConstraint!.constant = configuration.paddingLeft
         self.paddingTopConstraint!.constant = configuration.paddingTop
         self.paddingBottomConstraint!.constant = -1 * configuration.paddingBottom
-        self.removeButtonSpacingConstraint!.constant = configuration.removeButtonSpacing
         self.removeButtonWidthConstraint!.constant = configuration.removeButtonSize
-        
         self.backgroundColor = configuration.backgroundColor
-        
         self.wordLabel.textColor = tag.isGoldTag ? configuration.goldTagColor : configuration.textColor
-        self.wordLabel.font = configuration.hashtagFont
-
+        self.wordLabel.layoutSubviews()
+        
     }
 }

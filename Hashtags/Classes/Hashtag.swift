@@ -37,8 +37,9 @@ extension Array where Element: Equatable {
     @objc open var isGoldTag : Bool = false
     open var configuration: HashtagConfiguration?
     
-    @objc public init(word: String, isGoldTag: Bool = false, identifier:String="") {
+    @objc public init(word: String, isGoldTag: Bool = false, identifier:String="",isRemovable:Bool=false) {
         self.text = word
+        self.isRemovable = isRemovable
         self.isGoldTag = isGoldTag
         self.identifier = identifier
         if self.hasHashSymbol && word.hasPrefix("#") == false {
