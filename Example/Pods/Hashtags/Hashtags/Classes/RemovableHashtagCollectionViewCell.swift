@@ -20,7 +20,7 @@ public protocol RemovableHashtagDelegate: class {
 open class RemovableHashtagCollectionViewCell: UICollectionViewCell {
     
     static let cellIdentifier = "RemovableHashtagCollectionViewCell"
-
+    
     var paddingLeftConstraint: NSLayoutConstraint?
     var paddingRightConstraint: NSLayoutConstraint?
     var paddingTopConstraint: NSLayoutConstraint?
@@ -54,14 +54,14 @@ open class RemovableHashtagCollectionViewCell: UICollectionViewCell {
             btn.setTitle("X", for: UIControl.State.normal)
         }
         
-       
+        
         return btn
     }()
     
     open weak var delegate: RemovableHashtagDelegate?
     
     open var hashtag: HashTag?
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -78,6 +78,8 @@ open class RemovableHashtagCollectionViewCell: UICollectionViewCell {
         self.addSubview(wordLabel)
         self.addSubview(removeButton)
         
+        // Text Width
+        self.wordLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 10).isActive = false
         // Padding left
         self.paddingLeftConstraint = self.wordLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor)
         self.paddingLeftConstraint!.isActive = true
@@ -122,12 +124,16 @@ extension RemovableHashtagCollectionViewCell {
         self.hashtag = tag
         self.wordLabel.text = tag.text
         self.wordLabel.font = configuration.hashtagFont
+        
         self.paddingLeftConstraint!.constant = configuration.paddingLeft
         self.paddingTopConstraint!.constant = configuration.paddingTop
         self.paddingBottomConstraint!.constant = -1 * configuration.paddingBottom
         self.removeButtonWidthConstraint!.constant = configuration.removeButtonSize
+        
         self.backgroundColor = configuration.backgroundColor
+        
         self.wordLabel.textColor = tag.isGoldTag ? configuration.goldTagColor : configuration.textColor
+        
         self.wordLabel.layoutSubviews()
         
     }
