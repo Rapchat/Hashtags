@@ -28,7 +28,7 @@ extension String {
         return self.size(withAttributes: fontAttributes)
     }
     
-    func getLabelHeight(font:UIFont, width:CGFloat) -> CGFloat {
+    func heightForView(font:UIFont, width:CGFloat) -> CGFloat {
         let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
         label.numberOfLines = 0
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
