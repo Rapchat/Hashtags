@@ -32,10 +32,10 @@ class ExampleUsingStoryboard: UIViewController {
         self.input.addTarget(self, action: Selector.onEditingChanged, for: .editingChanged)
         self.addButton.setClickable(false)
         
-        let tags = [HashTag(word: "this is multiline hashtag test let me test, rest test test test test test test test test",isRemovable: true),
-                    HashTag(word: "We were both young when I first saw you, I was crying on the stair case bagging you don't go!! baby just say yesssssss so i sneak out, escape this town for little while", isRemovable: true),
-                    HashTag(word: "This pain would be forevermore", isRemovable: true),
-                    HashTag(word: "Difficult but real", isRemovable: true)]
+        let tags = [HashTag(word: "this"),
+                    HashTag(word: "is", isRemovable: false),
+                    HashTag(word: "an", isRemovable: true),
+                    HashTag(word: "example", isRemovable: true)]
         
         self.hashtags.addTags(tags: tags)
     }
@@ -48,7 +48,7 @@ class ExampleUsingStoryboard: UIViewController {
         guard let text = self.input.text else {
             return
         }
-        let hashtag = HashTag(word: text)
+        let hashtag = HashTag(word: text, isRemovable: true)
         self.hashtags.addTag(tag: hashtag)
         
         self.input.text = ""
@@ -89,7 +89,8 @@ extension ExampleUsingStoryboard: UITextFieldDelegate {
         if (range.length + range.location > currentCharacterCount){
             return false
         }
-        return true
+        let newLength = currentCharacterCount + string.count - range.length
+        return newLength <= Constants.maxCharsForInput
     }
     
     @objc
