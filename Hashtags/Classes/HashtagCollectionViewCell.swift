@@ -23,6 +23,7 @@ open class HashtagCollectionViewCell: UICollectionViewCell {
         lbl.textColor = UIColor.white
         lbl.textAlignment = .center
         lbl.translatesAutoresizingMaskIntoConstraints = false
+        lbl.numberOfLines = 0
         return lbl
     }()
     
@@ -64,16 +65,17 @@ open class HashtagCollectionViewCell: UICollectionViewCell {
     
     open func configureWithTag(tag: HashTag, configuration: HashtagConfiguration) {
         self.hashtag = tag
-        wordLabel.text = tag.text
+        self.wordLabel.text = tag.text
+        self.wordLabel.font = configuration.hashtagFont
         
         self.paddingLeftConstraint!.constant = configuration.paddingLeft
         self.paddingTopConstraint!.constant = configuration.paddingTop
         self.paddingBottomConstraint!.constant = -1 * configuration.paddingBottom
         self.paddingRightConstraint!.constant = -1 * configuration.paddingRight
-
+        
         self.backgroundColor = configuration.backgroundColor
-    
+        
         self.wordLabel.textColor = tag.isGoldTag ? configuration.goldTagColor : configuration.textColor
-        self.wordLabel.font = configuration.hashtagFont
+        self.wordLabel.layoutSubviews()
     }
 }

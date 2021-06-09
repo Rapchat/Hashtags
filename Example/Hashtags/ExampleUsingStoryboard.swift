@@ -48,7 +48,7 @@ class ExampleUsingStoryboard: UIViewController {
         guard let text = self.input.text else {
             return
         }
-        let hashtag = HashTag(word: text, isRemovable: true)
+        let hashtag = HashTag(word: text)
         self.hashtags.addTag(tag: hashtag)
         
         self.input.text = ""
