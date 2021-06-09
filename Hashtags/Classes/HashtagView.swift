@@ -367,17 +367,23 @@ extension HashtagView: UICollectionViewDelegateFlowLayout {
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let hashtag: HashTag = self.hashtags[indexPath.item]
-        let wordSize = hashtag.text.sizeOfString(usingFont: self.tagFont == nil ? UIFont.systemFont(ofSize: 13.0) : self.tagFont)
+        let wordSize = hashtag.text.sizeOfString(usingFont: self.tagFont)
         
         var calculatedHeight = CGFloat()
         var calculatedWidth = CGFloat()
         
         calculatedHeight = self.tagPaddingTop + wordSize.height + self.tagPaddingBottom
         calculatedWidth = self.tagPaddingLeft + wordSize.width + self.tagPaddingRight + 1
-
+        
         if hashtag.isRemovable {
             calculatedWidth += self.removeButtonSize + self.removeButtonSpacing
         }
+        
+        if (calculatedWidth > collectionView.frame.width) {
+            calculatedWidth = collectionView.frame.width
+            calculatedHeight = self.tagPaddingTop + hashtag.text.getLabelHeight(font: self.tagFont, width: calculatedWidth) + self.tagPaddingBottom
+        }
+        
         return CGSize(width: calculatedWidth, height: calculatedHeight)
     }
 }
