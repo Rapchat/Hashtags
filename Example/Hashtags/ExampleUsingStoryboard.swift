@@ -32,10 +32,10 @@ class ExampleUsingStoryboard: UIViewController {
         self.input.addTarget(self, action: Selector.onEditingChanged, for: .editingChanged)
         self.addButton.setClickable(false)
         
-        let tags = [HashTag(word: "this is multiline hashtag test let me test, rest test test test test test test test test",isRemovable: true),
-                    HashTag(word: "We were both young when I first saw you, I was crying on the stair case bagging you don't go!! baby just say yesssssss so i sneak out, escape this town for little while", isRemovable: true),
-                    HashTag(word: "This pain would be forevermore", isRemovable: true),
-                    HashTag(word: "Difficult but real", isRemovable: true)]
+        let tags = [HashTag(word: "this is multiline hashtag test let me test, rest test test test test test test test test"),
+                    HashTag(word: "We were both young when I first saw you, I was crying on the stair case bagging you don't go!! baby just say yesssssss so i sneak out, escape this town for little while"),
+                    HashTag(word: "This pain would be forevermore"),
+                    HashTag(word: "Difficult but real")]
         
         self.hashtags.addTags(tags: tags)
     }
