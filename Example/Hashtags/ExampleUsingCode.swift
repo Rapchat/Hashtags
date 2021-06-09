@@ -87,12 +87,12 @@ class ExampleUsingCode: UIViewController {
         
         self.input.addTarget(self, action: Selector.onEditingChanged, for: .editingChanged)
         self.addButton.addTarget(self, action: Selector.onAddHashtag, for: .touchUpInside)
-        self.hashtags.addTag(tag: HashTag(word: "hashtag", isRemovable: true))
+        self.hashtags.addTag(tag: HashTag(word: "hashtag"))
         
         let tags = [HashTag(word: "this"),
-                    HashTag(word: "is", isRemovable: false),
-                    HashTag(word: "another", isRemovable: true),
-                    HashTag(word: "example", isRemovable: true)]
+                    HashTag(word: "is"),
+                    HashTag(word: "another"),
+                    HashTag(word: "example")]
         
         self.hashtags.addTags(tags: tags)
     }
@@ -101,7 +101,7 @@ class ExampleUsingCode: UIViewController {
         guard let text = self.input.text else {
             return
         }
-        let hashtag = HashTag(word: text, isRemovable: true)
+        let hashtag = HashTag(word: text)
         hashtags.addTag(tag: hashtag)
         
         self.input.text = ""
